@@ -1,38 +1,53 @@
-.App {
-  text-align: center;
+.widget-container {
+  width: 100%;
+  box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+
+.preloader-image {
+  width: 50px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.categories-container {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-wrap: wrap;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  
+  border-bottom: 1px solid #c1bdbd;
+  background: #f7f7f7;
 }
 
-.App-link {
-  color: #61dafb;
+
+
+
+.category-chips-item {
+  padding: 5px;
+  border-radius: 15px;
+  background: #efefef;
+  border: 1px solid #c1bdbd;
+  margin: 10px;
+  user-select: none;
+  padding: 5px 10px 5px 10px;
+  transition: .3s;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.category-chips-item.active {
+  background: #9f9f9f;
+  border: 1px solid #9f9f9f;
+}
+
+
+.category-chips-item:hover {
+  cursor: pointer;
+  opacity: .8;
+}
+
+.category-chips-item span {
+  color: rgb(36, 35, 35);
+  white-space: nowrap;
 }

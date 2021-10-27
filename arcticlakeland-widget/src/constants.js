@@ -1,0 +1,1 @@
+export const apiURL = "http://arcticlakeland.com/wp-json/wp/v2/"
