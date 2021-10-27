@@ -6,38 +6,55 @@ import APIService from "../services/APIService";
 import CategoryChips from "./CategoryChips";
 
 class Header extends React.Component {
-    
+
     constructor() {
         super()
 
         this.apiService = new APIService()
 
         // currentlyActiveId is used to store which category is currently selected
+        // categories is an originaly loaded categories
+        // sortedCategories is a result of sort by parent category
 
-        this.state = {categories: [], currentlyActiveId: -1}
+        this.state = { categories: [], sortedCategories: [], currentlyActiveId: -1 }
 
         this.isLoaded = false;
     }
-    
+
     render() {
 
         // show either preloader or categories
         // we pass name, id and currentlyActiveId to category item component
-        let categories = (this.isLoaded) ? 
-        this.state.categories.map(c => (
-            <CategoryChips clickHandler={this.handleClick.bind(this)} name={c.name} id={c.id} key={c.id} currentlyActive={this.state.currentlyActiveId}></CategoryChips>
-            )) : 
-        <img className="preloader-image" src={preloader} alt='Loading...'></img>;
+        let categories = (this.isLoaded) ?
+            this.state.sortedCategories.map(c => (
+                <CategoryChips clickHandler={this.handleClick.bind(this)} name={c.name} id={c.id} key={c.id} currentlyActive={this.state.currentlyActiveId}></CategoryChips>
+            )) :
+            <img className="preloader-image" src={preloader} alt='Loading...'></img>;
 
         return (
-            <div className="categories-container">
-                {categories}
-            </div>
+            <header>
+                <div className="main-catergories-container">
+                    <a onClick={() => this.openParentCategory(30)}>Majoitu</a>
+                    <a onClick={() => this.openParentCategory(28)}>Näe ja koe</a>
+                    <a onClick={() => this.openParentCategory(32)}>Syö ja juo</a>
+                </div>
+                <div className="categories-container">
+                    {categories}
+                </div>
+            </header>
         )
     }
 
+    openParentCategory(id) {
+        const sortedCategories = this.state.categories.filter(c => c.parent === id)
+
+        console.log(sortedCategories)
+        this.setState({sortedCategories})
+    }
+
+
     handleClick(currentlyActiveId) {
-        this.setState({currentlyActiveId})
+        this.setState({ currentlyActiveId })
 
         this.props.categoryWasChanged(currentlyActiveId)
     }
@@ -58,7 +75,7 @@ class Header extends React.Component {
 
             this.setState({
                 categories,
-                currentlyActiveId 
+                currentlyActiveId
             })
         })
     }
