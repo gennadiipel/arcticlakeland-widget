@@ -34,6 +34,7 @@
   user-select: none;
   padding: 5px 10px 5px 10px;
   transition: .3s;
+  cursor: pointer;
 }
 
 .category-chips-item.active {
@@ -42,8 +43,7 @@
 }
 
 
-.category-chips-item:hover {
-  cursor: pointer;
+.category-chips-item:not(.active):hover {
   opacity: .8;
 }
 

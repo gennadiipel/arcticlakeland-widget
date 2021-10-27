@@ -11,13 +11,13 @@ export default class CategoryChips extends React.Component {
     
     render() {
         return (
-            <div onClick={this.handleClick.bind(this)} className={`category-chips-item ${this.state.isActive ? 'active' : ''}`}>
+            <div onClick={this.handleClick.bind(this)} className={`category-chips-item ${this.props.currentlyActive === this.props.id ? 'active' : ''}`}>
                 <span>{this.props.name}</span>
             </div>
         )
     }
 
     handleClick() {
-        this.setState({isActive: true})
+        this.props.clickHandler(this.props.id)
     }
 }
