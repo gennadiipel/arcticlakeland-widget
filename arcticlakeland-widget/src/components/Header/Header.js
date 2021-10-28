@@ -14,19 +14,16 @@ class Header extends React.Component {
 
         this.apiService = new APIService()
 
-        // currentlyActiveId is used to store which category is currently selected
-        // categories is an originaly loaded categories
-        // sortedCategories is a result of sort by parent category
-
         this.state = {
-            categories: [],
-            sortedCategories: [],
-            currentlyActiveId: -1,
-            currentlyActiveParentId: -1,
-            isCategoryListExpanded: false,
-            isLoaded: false
+            categories: [], // all categories
+            sortedCategories: [], // categories of selected parent category
+            currentlyActiveId: -1, // selected category
+            currentlyActiveParentId: -1, // selected parent category
+            isCategoryListExpanded: false, // is category list expanded
+            isLoaded: false // are all categories loaded
         }
 
+        // list of parent categories
         this.parentCategories = [
             { id: 30, title: 'Majoitu' },
             { id: 28, title: 'Näe ja koe' },
@@ -36,17 +33,17 @@ class Header extends React.Component {
 
     render() {
 
-        // show either preloader or categories
-        // we pass name, id and currentlyActiveId to category item component
-
+        // displayed categories, that will be shown in the header: if list is expanded, then show all categories, otherwise only 10 first.
         let displayedCategories = !this.state.isCategoryListExpanded ? this.state.sortedCategories.slice(0, 10) : [...this.state.sortedCategories]
 
+        // show either categories or preloader, is isLoaded === false
         let categories = (this.state.isLoaded) ?
             displayedCategories.map(c => (
                 <CategoryChips clickHandler={this.handleClick.bind(this)} name={c.name} id={c.id} key={c.id} currentlyActive={this.state.currentlyActiveId}></CategoryChips>
             )) :
             <img className="preloader-image" src={preloader} alt='Loading...'></img>;
 
+        // "expand" button if there more than 10 categories
         let expandButton = null
 
         if (this.state.sortedCategories.length > 10) {
@@ -55,7 +52,6 @@ class Header extends React.Component {
                     <span>{this.state.isCategoryListExpanded ? 'Hide' : `Show more (+${this.state.sortedCategories.length - 10})`}</span>
                 </div>
             )
-
         }
 
 
@@ -67,7 +63,7 @@ class Header extends React.Component {
                             return (
                                 <a
                                     key={el.id}
-                                    className={`parent-category-title ${this.state.currentlyActiveParentId == el.id ? 'active' : ''}`}
+                                    className={`parent-category-title ${this.state.currentlyActiveParentId === el.id ? 'active' : ''}`}
                                     onClick={() => this.openParentCategory(el.id)}
                                 >
                                     {el.title}
@@ -86,17 +82,21 @@ class Header extends React.Component {
 
     openParentCategory(currentlyActiveParentId) {
 
+        // if categories are not loaded, then do nothing
         if (!this.state.isLoaded) {
             return
         }
 
-
+        // subcategories of current parent category
         const sortedCategories = this.state.categories.filter(c => c.parent === currentlyActiveParentId)
 
+        // get either id of the first item or -1 as a default value
         const id = sortedCategories[0]?.id || -1;
 
+        // emulate click to the first subcategory in the list
         this.handleClick(id);
 
+        // update all states
         this.setState({ sortedCategories, currentlyActiveParentId, isCategoryListExpanded: false })
     }
 
@@ -104,19 +104,18 @@ class Header extends React.Component {
     handleClick(currentlyActiveId) {
         this.setState({ currentlyActiveId })
 
+        // calls callback in App.js to load products of this category
         this.props.categoryWasChanged(currentlyActiveId)
     }
 
 
     componentDidMount() {
+        // load all categories
         this.apiService.getCategories((categories) => {
 
             // by default we open first category
             // if array is empty we use -1
             let currentlyActiveId = categories[0]?.id || -1
-
-            // load products from default category
-            //this.props.categoryWasChanged(currentlyActiveId)
 
             this.setState({
                 categories,
@@ -124,12 +123,14 @@ class Header extends React.Component {
                 isLoaded: true
             })
 
+            // open first parent category
             this.openParentCategory(this.parentCategories[0].id)
         })
     }
 
 
     expandCategories() {
+        // toggle expanding of the list
         this.setState({ isCategoryListExpanded: !this.state.isCategoryListExpanded })
     }
 }

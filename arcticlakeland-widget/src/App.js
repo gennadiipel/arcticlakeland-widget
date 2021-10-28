@@ -14,6 +14,7 @@ class App extends React.Component {
     super()
     this.productsService = new APIService()
 
+    // current selected category
     this.state = {currentCategoryId: -1}
   }
   
@@ -27,12 +28,8 @@ class App extends React.Component {
     )
   }
 
-
-  componentDidMount() {
-    
-  }
-
   categoryWasChanged(currentCategoryId) {
+    // update current category id when we get it from the Header component
     this.setState({currentCategoryId})
   }
 

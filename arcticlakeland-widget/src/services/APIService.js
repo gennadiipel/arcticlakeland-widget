@@ -4,7 +4,6 @@ import { apiURL } from "../constants";
 export default class APIService {
 
     getProducts(categoryId, callback, params = {page: 1}, error) {
-        console.log(categoryId)
         return this.getData(`product?lang=fi&page=${params.page}&category=${categoryId}`, callback, error)
     }
 

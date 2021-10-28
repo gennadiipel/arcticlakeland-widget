@@ -20,6 +20,7 @@ export default class CategoryChips extends React.Component {
     }
 
     handleClick() {
+        // trigger callback in Header component
         this.props.clickHandler(this.props.id)
     }
 }

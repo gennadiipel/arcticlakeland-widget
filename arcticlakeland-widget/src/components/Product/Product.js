@@ -14,6 +14,7 @@ export class Product extends React.Component {
             title: this.props.product.title.rendered
         }
 
+        // get value of src attribute of html element
         var regex = /<img.*?src="(.*?)"/
         fields.image = regex.exec(fields.image)?.[1] || ''
 
