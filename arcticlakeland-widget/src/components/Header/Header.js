@@ -49,7 +49,7 @@ class Header extends React.Component {
         if (this.state.sortedCategories.length > 10) {
             expandButton = (
                 <div onClick={this.expandCategories.bind(this)} className="category-chips-item">
-                    <span>{this.state.isCategoryListExpanded ? 'Hide' : `Show more (+${this.state.sortedCategories.length - 10})`}</span>
+                    <span>{this.state.isCategoryListExpanded ? 'Piilota' : `Näytä lisää (+${this.state.sortedCategories.length - 10})`}</span>
                 </div>
             )
         }
