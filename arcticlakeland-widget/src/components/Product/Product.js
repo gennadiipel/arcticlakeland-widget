@@ -22,7 +22,7 @@ export class Product extends React.Component {
                 <div className="image-container"
                 style={{backgroundImage: `url(${fields.image})`}}
                 >
-                    {fields.price && <div class="price-tag">
+                    {fields.price && <div className="price-tag">
                         <span>{fields.price}€</span>
                     </div>}
                 </div>
