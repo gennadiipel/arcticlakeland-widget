@@ -1,9 +1,11 @@
 import React from "react";
 
-import preloader from './../assets/preloader.gif'
+import preloader from './../../assets/preloader.gif'
 
-import APIService from "../services/APIService";
-import CategoryChips from "./CategoryChips";
+import APIService from "../../services/APIService";
+import CategoryChips from "../CategoryChips/CategoryChips";
+
+import './Header.scss';
 
 class Header extends React.Component {
 
@@ -16,9 +18,15 @@ class Header extends React.Component {
         // categories is an originaly loaded categories
         // sortedCategories is a result of sort by parent category
 
-        this.state = { categories: [], sortedCategories: [], currentlyActiveId: -1 }
+        this.state = { categories: [], sortedCategories: [], currentlyActiveId: -1, currentlyActiveParentId: -1 }
 
         this.isLoaded = false;
+
+        this.parentCategories = [
+            {id: 30, title: 'Majoitu'},
+            {id: 28, title: 'Näe ja koe'},
+            {id: 32, title: 'Syö ja juo'},
+        ]
     }
 
     render() {
@@ -33,10 +41,12 @@ class Header extends React.Component {
 
         return (
             <header>
-                <div className="main-catergories-container">
-                    <a onClick={() => this.openParentCategory(30)}>Majoitu</a>
-                    <a onClick={() => this.openParentCategory(28)}>Näe ja koe</a>
-                    <a onClick={() => this.openParentCategory(32)}>Syö ja juo</a>
+                <div className="parent-catergories-container">
+                    {
+                        this.parentCategories.map(el => {
+                            return <a className={`parent-category-title ${this.state.currentlyActiveParentId == el.id ? 'active' : ''}`} onClick={() => this.openParentCategory(el.id)}>{el.title}</a>
+                        })
+                    }
                 </div>
                 <div className="categories-container">
                     {categories}
@@ -45,11 +55,10 @@ class Header extends React.Component {
         )
     }
 
-    openParentCategory(id) {
-        const sortedCategories = this.state.categories.filter(c => c.parent === id)
+    openParentCategory(currentlyActiveParentId) {
+        const sortedCategories = this.state.categories.filter(c => c.parent === currentlyActiveParentId)
 
-        console.log(sortedCategories)
-        this.setState({sortedCategories})
+        this.setState({sortedCategories, currentlyActiveParentId})
     }
 
 

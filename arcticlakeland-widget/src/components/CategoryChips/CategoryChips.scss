@@ -1,0 +1,26 @@
+.category-chips-item {
+    padding: 5px;
+    border-radius: 15px;
+    background: #efefef;
+    border: 1px solid #c1bdbd;
+    margin: 10px;
+    user-select: none;
+    padding: 5px 10px 5px 10px;
+    transition: .3s;
+    cursor: pointer;
+}
+
+.category-chips-item.active {
+    background: #9f9f9f;
+    border: 1px solid #9f9f9f;
+}
+
+
+.category-chips-item:not(.active):hover {
+    opacity: .8;
+}
+
+.category-chips-item span {
+    color: rgb(36, 35, 35);
+    white-space: nowrap;
+}

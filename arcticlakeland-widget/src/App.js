@@ -1,10 +1,10 @@
 import './App.css';
 
-import Header from './components/Header';
+import Header from './components/Header/Header';
 import React from 'react';
 
 import APIService from './services/APIService';
-import Products from './components/Products';
+import Products from './components/Products/Products';
 
 class App extends React.Component {
 

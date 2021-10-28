@@ -1,6 +1,6 @@
 import React from "react";
-import APIService from "../services/APIService";
-import preloader from "./../assets/preloader.gif";
+import APIService from "../../services/APIService";
+import preloader from "./../../assets/preloader.gif";
 
 export default class Products extends React.Component {
 

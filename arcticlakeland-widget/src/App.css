@@ -3,56 +3,6 @@
   box-sizing: border-box;
 }
 
-
 .preloader-image {
   width: 50px;
-}
-
-
-.categories-container {
-  width: 100%;
-  box-sizing: border-box;
-  padding: 10px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  
-  border-bottom: 1px solid #c1bdbd;
-  background: #f7f7f7;
-}
-
-
-
-
-.category-chips-item {
-  padding: 5px;
-  border-radius: 15px;
-  background: #efefef;
-  border: 1px solid #c1bdbd;
-  margin: 10px;
-  user-select: none;
-  padding: 5px 10px 5px 10px;
-  transition: .3s;
-  cursor: pointer;
-}
-
-.category-chips-item.active {
-  background: #9f9f9f;
-  border: 1px solid #9f9f9f;
-}
-
-
-.category-chips-item:not(.active):hover {
-  opacity: .8;
-}
-
-.category-chips-item span {
-  color: rgb(36, 35, 35);
-  white-space: nowrap;
-}
-
-
-.main-catergories-container {
-  
 }

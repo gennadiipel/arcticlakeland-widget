@@ -1,5 +1,7 @@
 import React from "react";
 
+import './CategoryChips.scss';
+
 export default class CategoryChips extends React.Component {
     
     constructor(props) {
