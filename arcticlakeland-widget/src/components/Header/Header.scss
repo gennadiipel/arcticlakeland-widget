@@ -1,12 +1,39 @@
-.categories-container {
+header {
     width: 100%;
     box-sizing: border-box;
-    padding: 10px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
 
-    border-bottom: 1px solid #c1bdbd;
-    background: #f7f7f7;
+
+    .centered-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .categories-container {
+        border-bottom: 1px solid #c1bdbd;
+        background: #f7f7f7;
+        padding: 10px;
+    }
+
+
+    .parent-catergories-container {
+        padding: 10px;
+
+        a {
+            font-size: 20px;
+            padding: 20px 20px 20px 20px;
+            user-select: none;
+            
+            &:hover {
+                cursor: pointer;
+            }
+
+            &.active {
+                font-weight: bold;
+            }
+        }
+    }
 }
+
+

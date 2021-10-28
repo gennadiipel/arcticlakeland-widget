@@ -21,8 +21,6 @@ export default class Products extends React.Component {
         (!this.isLoaded) ?
         this.state.products.map(p => <p key={p.id}>{p.title.rendered}</p>) :
         <img src={preloader} className="preloader-image"></img>;
-        
-        console.log("render()")
 
         return (
             <div className="products-container">
@@ -35,7 +33,6 @@ export default class Products extends React.Component {
     reloadProducts() {
         this.isLoaded = false
         this.apiService.getProducts(this.currentCategoryId, products => {
-            console.log("HERE")
             this.setState({products})
             this.isLoaded = true
         })
