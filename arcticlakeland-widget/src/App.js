@@ -15,7 +15,7 @@ class App extends React.Component {
     this.productsService = new APIService()
 
     // current selected category
-    this.state = {currentCategoryId: -1}
+    this.state = {currentCategoryId: -1, countOfCategoryProducts: 0}
   }
   
   render() {
@@ -23,14 +23,17 @@ class App extends React.Component {
     return (
       <div className="widget-container">
         <Header categoryWasChanged={this.categoryWasChanged.bind(this)}></Header>
-        <Products currentCategoryId={this.state.currentCategoryId}></Products>
+        <Products currentCategoryId={this.state.currentCategoryId} count={this.state.countOfCategoryProducts}></Products>
       </div>
     )
   }
 
-  categoryWasChanged(currentCategoryId) {
+  categoryWasChanged(currentCategoryId, countOfCategoryProducts = 0) {
     // update current category id when we get it from the Header component
-    this.setState({currentCategoryId})
+
+    console.log("CategoryWasChanged", countOfCategoryProducts)
+
+    this.setState({currentCategoryId, countOfCategoryProducts})
   }
 
 }

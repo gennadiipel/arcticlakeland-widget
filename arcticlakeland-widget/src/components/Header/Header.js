@@ -105,13 +105,18 @@ class Header extends React.Component {
         this.setState({ currentlyActiveId })
 
         // calls callback in App.js to load products of this category
-        this.props.categoryWasChanged(currentlyActiveId)
+        this.props.categoryWasChanged(currentlyActiveId, this.state.categories.find(c => c.id === currentlyActiveId)?.count || 0)
     }
 
 
     componentDidMount() {
         // load all categories
         this.apiService.getCategories((categories) => {
+
+            categories = categories.map(c => {
+                c.id = c.term_id
+                return c
+            })
 
             // by default we open first category
             // if array is empty we use -1

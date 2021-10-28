@@ -8,7 +8,7 @@ export default class APIService {
     }
 
     getCategories(callback) {
-        return this.getData('activitycategory?lang=fi&per_page=100', callback)
+        return this.getData('allactivitycategories', callback)
     }
 
     getData(action, callback, error = (e) => {console.log(e)}) {
