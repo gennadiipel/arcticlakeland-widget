@@ -1,0 +1,15 @@
+.products-container {
+    width: 100%;
+    box-sizing: border-box;
+
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    //align-items: center;
+    gap: 20px;
+
+
+    background: #ebe8e8;
+
+}
