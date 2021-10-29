@@ -13,16 +13,21 @@ header {
     }
 
     .categories-container {
-        border-bottom: 1px solid #c1bdbd;
         background: #f7f7f7;
         padding: 10px;
+    }
+
+    .expand-button-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
 
     .parent-catergories-container {
         padding: 10px;
 
-        a {
+        span {
             font-size: 20px;
             padding: 20px 20px 20px 20px;
             user-select: none;

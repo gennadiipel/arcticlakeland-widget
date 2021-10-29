@@ -1,1 +1,1 @@
-export const apiURL = "http://localhost:8888/wp-json/wp/v2/"
+export const apiURL = "http://arcticlakeland.com/wp-json/wp/v2/"

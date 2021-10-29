@@ -48,7 +48,7 @@ class Header extends React.Component {
 
         if (this.state.sortedCategories.length > 10) {
             expandButton = (
-                <div onClick={this.expandCategories.bind(this)} className="category-chips-item">
+                <div onClick={this.expandCategories.bind(this)} className="category-chips-item active">
                     <span>{this.state.isCategoryListExpanded ? 'Piilota' : `Näytä lisää (+${this.state.sortedCategories.length - 10})`}</span>
                 </div>
             )
@@ -61,20 +61,24 @@ class Header extends React.Component {
                     {
                         this.parentCategories.map(el => {
                             return (
-                                <a
+                                <span
                                     key={el.id}
                                     className={`parent-category-title ${this.state.currentlyActiveParentId === el.id ? 'active' : ''}`}
                                     onClick={() => this.openParentCategory(el.id)}
                                 >
                                     {el.title}
-                                </a>
+                                </span>
                             )
                         })
                     }
                 </div>
-                <div className="categories-container centered-container">
-                    {categories}
-                    {expandButton}
+                <div className="categories-container">
+                    <div className="centered-container">
+                        {categories}
+                    </div>
+                    <div className="expand-button-container">
+                        {expandButton}
+                    </div>
                 </div>
             </header>
         )
@@ -112,9 +116,10 @@ class Header extends React.Component {
     componentDidMount() {
         // load all categories
         this.apiService.getCategories((categories) => {
+            console.log(categories)
 
             categories = categories.map(c => {
-                c.id = c.term_id
+                // c.id = c.term_id
                 return c
             })
 

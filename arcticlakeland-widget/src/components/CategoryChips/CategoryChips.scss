@@ -1,17 +1,17 @@
 .category-chips-item {
     padding: 5px;
-    border-radius: 15px;
-    background: #efefef;
-    border: 1px solid #c1bdbd;
+    border-radius: 35px;
+    background: #fafafa;
+    border: 1px solid #dbdada;
     margin: 10px;
     user-select: none;
-    padding: 5px 10px 5px 10px;
+    padding: 8px 13px 8px 13px;
     transition: .3s;
     cursor: pointer;
 
     &.active {
-        background: #9f9f9f;
-        border: 1px solid #9f9f9f;
+        background: #5ad2c8;
+        border: 1px solid #5ad2c8;
     }
 
     &:not(.active):hover {
@@ -21,5 +21,6 @@
     span {
         color: rgb(36, 35, 35);
         white-space: nowrap;
+        font-weight: bold;
     }
 }
